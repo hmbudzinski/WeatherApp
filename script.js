@@ -22,11 +22,13 @@ $("button").on("click", function(){
     userSearch.text($("#City").val() + ", " + $("#Country").val());
     userSearch.addClass("list-group-item");
     $("#cityList").append(userSearch);
-    
-    //example from Bjumbra exercise on setting the elements 
-    $("#temp").text(response.main.temp);
-    $("#humidity").text(response.main.humidity);
-    $("#wind-speed").text(response.wind.speed);
+    //
+    $("#dailyTitle").append($("#City").val() + ", " + $("#Country").val());
+
+    $("#temp").text("Temperature: " + response.main.temp);
+    $("#humidity").text("Humidity: " + response.main.humidity);
+    $("#wind-speed").text("Wind Speed: " + response.wind.speed);
+    $("#UV").text("UV Index: " + response.wind.speed);
 
     // var currentTitle = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
     // $("#dailyTitle").append(currentTitle);
@@ -43,12 +45,13 @@ function fiveday(){
         method: "GET"
     })
     .then(function(response) {
-        console.log(fivedayqueryURL);
         console.log(response);
 
     for(var i = 0; i < response.list.length; i++){
-        if (response.list[i].dt_text.indexOf("12:00:00") !== -1){
-            //create divs for display here 
+        if (response.list[i].dt_txt.indexOf("12:00:00") !== -1){
+            var temp = $("<div>").text("Temp: " + response.list[i].main.temp);
+            console.log(response.list[i].main.temp)
+            (temp).appendTo($("#day1"));
         }
     }
 

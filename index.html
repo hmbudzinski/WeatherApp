@@ -20,27 +20,27 @@
     <div class = "row"> <!--Row for entire body-->
 
         <div class = "col-md-4"> <!--column for search bar-->
-            <div class="card" style="width: 18rem;">
+            <div class="card h-auto w-100" style="width: 18rem;">
                 <div class="card-header">
                     Seach for a City:
                 </div>
                 <div class="form-group">
                         <input type="text" class="form-control" id="City" placeholder ="City">
                         <input type="text" class="form-control" id="Country" placeholder="Country">
-                        <button class="btn btn-primary" id="submitBtn"><i class="fas fa-angle-double-down"></i></button>
+                        <button class="btn btn-primary w-100" id="submitBtn"><i class="fas fa-angle-double-down"></i></button>
                 </div>
                 <ul class="list-group list-group-flush" id="cityList">
                 </ul>
             </div>
         </div>
 
+        <!--column for results-->
         <div class = "col-md-8">
+            <!-- row for daily display-->
             <div class = "row"> 
-            <div class="card">
-                <div class="card-header">
-                </div> 
+            <div class="card float-right w-100 h-auto">
+                <div class="card-header" id = "dailyTitle"></div> 
                 <div class="card-body">
-                    <h5 class="card-title" id = "dailyTitle">Header</h5>
                     <div>
                     <p id="temp"></p>
                     <p id="humidity"></p>
@@ -51,54 +51,53 @@
             </div> 
             </div>
 
-            <!-- <div class = "row" id = "fiveDayRow"> row for five day display -->
-                <div class = "col-md">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Header</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Primary card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <!-- row for five day display-->
+        <div class = "row">
+            <div class="header" id = "fiveDayHeader"></div> 
+        </div>
+
+            <div class = "row">
+                <div class="card-group w-100 h-auto">
+                <div class = "col-sm-2 m-1">
+                    <div class="card text-white bg-primary mb-3 float-left w-auto" style="max-width: 18rem;">
+                        <div class="card-body" id="day1">
+                            <h5 class="card-title">Include Date Here</h5>
                         </div>
                     </div>
                 </div>
-                <!---<div class = "col-md">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Header</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Primary card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <div class = "col-sm-2 m-1">
+                        <div class="card text-white bg-primary mb-3 float-left w-auto" style="max-width: 18rem;">
+                            <div class="card-body" id="day2">
+                                <h5 class="card-title">Include Date Here</h5>
+                            </div>
+                        </div>
+                    </div>
+                <div class = "col-sm-2 m-1">
+                        <div class="card text-white bg-primary mb-3 float-left w-auto" style="max-width: 18rem;">
+                            <div class="card-body" id="day3">
+                                <h5 class="card-title">Include Date Here</h5>
+                            </div>
+                        </div>
+                    </div>
+                <div class = "col-sm-2 m-1">
+                        <div class="card text-white bg-primary mb-3 float-left w-auto" style="max-width: 18rem;">
+                            <div class="card-body" id="day4">
+                                <h5 class="card-title">Include Date Here</h5>
+                            </div>
+                        </div>
+                    </div>
+                <div class = "col-sm-2 m-1">
+                        <div class="card text-white bg-primary mb-3 float-left w-auto" style="max-width: 18rem;">
+                            <div class="card-body" id="day5">
+                                <h5 class="card-title">Include Date Here</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class = "col-md">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Header</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Primary card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class = "col-md">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Header</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Primary card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class = "col-md">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Header</div>
-                        <div class="card-body">
-                            <h5 class="card-title">Primary card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </div>
-                    </div>
-                </div> -->
-            <!-- </div> -->
-        <!-- </div> -->
+            </div>
+            </div>
+        </div>
+        </div>
         </div>
     </div>
     </div>
