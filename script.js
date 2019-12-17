@@ -20,18 +20,18 @@ $("button").on("click", function(){
         //creates and appends button to list 
         var userSearch = $("<button>");
         localStorage.setItem($("#City").val(), $("#City").val() + $("#Country").val());
+
+        // userSearch.attr("data-name", )
         userSearch.text($("#City").val() + ", " + ($("#Country").val()).toUpperCase());
         userSearch.addClass("list-group-item");
         $("#cityList").prepend(userSearch);
     
-
         //sets the search term to the title on the right
         $("#dailyTitle").empty();
         $("#dailyTitle").append($("#City").val() + ", " + ($("#Country").val().toUpperCase()) + " (" + moment().format('L') + ")");
 
         var weatherImage = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
         $("#dailyTitle").append(weatherImage);
-
 
         //grabbing data
         $("#temp").text("Temperature: " + response.main.temp);
@@ -59,30 +59,29 @@ function fiveday(){
     .then(function(response) {
         console.log(response);
 
+    var counter = 0;
+    // $("#day1").empty();
+
     for(var i = 0; i < response.list.length; i++){
         if (response.list[i].dt_txt.indexOf("12:00:00") !== -1){
             
-            var fdarray = [];
-            fdarray.push([i]);
-            console.log(fdarray);
-
-            //if i use this is clears the entire div but also only shows day 1 of the array
-            $("#day1").empty();
-
-            //if the index of 12 is present in the above referenced list, 
-            //then create a div and make the content that index
-            $("<div>").text("Temp: " + fdarray[0]).appendTo($("#day1"));
-            $("<div>").text("Temp: " + fdarray[1]).appendTo($("#day2"));
-            
             // localStorage.setItem("Temp: ", response.list[i].main.temp);
-
-            // console.log(response.list[i].main.temp)
-
-            // $("#day1").append(response.list[0].main.temp);
-            // $("#day2").append(response.list[1].main.temp);
-            // $("#day3").append(response.list[2].main.temp);
-            // $("#day4").append(response.list[3].main.temp);
-            // $("#day5").append(response.list[4].main.temp);
+            if (counter === 0){
+                $("#temp1").append(response.list[i].main.temp);
+                $("#humidity1").append(response.list[i].main.humidity);
+                counter++;
+            } else if (counter === 1){
+                $("#day2").append(response.list[i].main.temp);
+                counter++;
+            } else if(counter === 2){
+                $("#day3").append(response.list[i].main.temp);
+                counter++;
+            } else if(counter === 3){
+                $("#day4").append(response.list[i].main.temp);
+                counter++;
+            } else if(counter === 4){
+                $("#day5").append(response.list[i].main.temp);
+            }
         }
     }
 })};
