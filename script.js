@@ -67,20 +67,24 @@ function fiveday(){
             
             // localStorage.setItem("Temp: ", response.list[i].main.temp);
             if (counter === 0){
-                $("#temp1").append(response.list[i].main.temp);
-                $("#humidity1").append(response.list[i].main.humidity);
+                $("#temp1").append("Temp: " + response.list[i].main.temp);
+                $("#humidity1").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
             } else if (counter === 1){
-                $("#day2").append(response.list[i].main.temp);
+                $("#temp2").append("Temp: " + response.list[i].main.temp);
+                $("#humidity2").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
             } else if(counter === 2){
-                $("#day3").append(response.list[i].main.temp);
+                $("#temp3").append("Temp: " + response.list[i].main.temp);
+                $("#humidity3").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
             } else if(counter === 3){
-                $("#day4").append(response.list[i].main.temp);
+                $("#temp4").append("Temp: " + response.list[i].main.temp);
+                $("#humidity4").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
             } else if(counter === 4){
-                $("#day5").append(response.list[i].main.temp);
+                $("#temp5").append("Temp: " + response.list[i].main.temp);
+                $("#humidity5").append("Humidity: " + response.list[i].main.humidity + "%");
             }
         }
     }
