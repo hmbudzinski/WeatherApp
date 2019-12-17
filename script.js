@@ -41,11 +41,6 @@ $("button").on("click", function(){
 
 
     fiveday();
-    addDate1();
-    addDate2();
-    addDate3();
-    addDate4();
-    addDate5();
 });
 })
 
@@ -67,22 +62,52 @@ function fiveday(){
             
             // localStorage.setItem("Temp: ", response.list[i].main.temp);
             if (counter === 0){
+                $("#date1").empty();
+                $("#temp1").empty();
+                $("#humidity1").empty();
+                var date1 = $("<div>");
+                date1.text(moment().add(1, 'days').format('L'));
+                $("#date1").append(date1);
                 $("#temp1").append("Temp: " + response.list[i].main.temp);
                 $("#humidity1").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
             } else if (counter === 1){
+                $("#date2").empty();
+                $("#temp2").empty();
+                $("#humidity2").empty();
+                var date2 = $("<div>");
+                date2.append(moment().add(2, 'days').format('L'));
+                $("#date2").append(date2);
                 $("#temp2").append("Temp: " + response.list[i].main.temp);
                 $("#humidity2").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
             } else if(counter === 2){
+                $("#date3").empty();
+                $("#temp3").empty();
+                $("#humidity3").empty();
+                var date3 = $("<div>");
+                date3.append(moment().add(3, 'days').format('L'));
+                $("#date3").append(date3);
                 $("#temp3").append("Temp: " + response.list[i].main.temp);
                 $("#humidity3").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
             } else if(counter === 3){
+                $("#date4").empty();
+                $("#temp4").empty();
+                $("#humidity4").empty();
+                var date4 = $("<div>");
+                date4.append(moment().add(4, 'days').format('L'));
+                $("#date4").append(date4);
                 $("#temp4").append("Temp: " + response.list[i].main.temp);
                 $("#humidity4").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
             } else if(counter === 4){
+                $("#date5").empty();
+                $("#temp5").empty();
+                $("#humidity5").empty();
+                var date5 = $("<div>");
+                date5.append(moment().add(5, 'days').format('L'));
+                $("#date5").append(date5);
                 $("#temp5").append("Temp: " + response.list[i].main.temp);
                 $("#humidity5").append("Humidity: " + response.list[i].main.humidity + "%");
             }
@@ -93,39 +118,3 @@ function fiveday(){
 // function callCity (){
 //     // userSearch.on("click", getItem($("#City").val());
 // }
-
-//functions to add dates to five day forecast
-function addDate1(){
-    $("#date1").empty();
-    var date1 = $("<div>");
-    date1.text(moment().add(1, 'days').format('L'));
-    $("#date1").append(date1);
-}
-
-function addDate2(){
-    $("#date2").empty();
-    var date2 = $("<div>");
-    date2.append(moment().add(2, 'days').format('L'));
-    $("#date2").append(date2);
-}
-
-function addDate3(){    
-    $("#date3").empty();
-    var date3 = $("<div>");
-    date3.append(moment().add(3, 'days').format('L'));
-    $("#date3").append(date3);
-}
-
-function addDate4(){
-    $("#date4").empty();
-    var date4 = $("<div>");
-    date4.append(moment().add(4, 'days').format('L'));
-    $("#date4").append(date4);
-}
-
-function addDate5(){
-    $("#date5").empty();
-    var date5 = $("<div>");
-    date5.append(moment().add(5, 'days').format('L'));
-    $("#date5").append(date5);
-}
