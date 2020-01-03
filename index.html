@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="./sytle.css">
     <title>Weather App</title>
 </head>
-<body>
-
-    <div class = "container">
+<body background = "./clouds.jpg" class = "w-100">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-4">Weather Dashboard</h1>
@@ -18,13 +16,12 @@
         </div>
 
     <div class = "row"> <!--Row for entire body-->
-
         <div class = "col-md-4"> <!--column for search bar-->
             <div class="card h-auto w-100" style="width: 18rem;">
                 <div class="card-header">
                     Seach for a City:
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="searchbox">
                         <input type="text" class="form-control" id="City" placeholder ="City">
                         <input type="text" class="form-control" id="Country" placeholder="Country">
                         <button class="btn btn-primary w-100" id="submitBtn"><i class="fas fa-angle-double-down"></i></button>
@@ -57,7 +54,7 @@
         </div>
 
             <div class = "row">
-                <div class="card-group w-100 h-auto">
+                <div class="card-group w-100 h-auto fiveday">
 
                 <div class = "col-sm-2">
                     <div class="card m-2 text-white bg-primary mb-3 float-left" style="max-width: 18rem;">

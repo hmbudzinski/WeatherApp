@@ -1,0 +1,14 @@
+/* .card-body{
+    min-height: 100px;
+} */
+
+.fiveday{
+    width: 100%;
+    bottom: 0;
+}
+
+.jumbotron{
+    background-color: lightblue;
+    text-align: center;
+    border-bottom: solid 2px black;
+}
