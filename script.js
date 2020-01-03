@@ -1,14 +1,19 @@
-var APIKey = "&units=imperial&appid=f7881db99aec8ecaf4b4187281073fcc"
+var APIKey = "&units=imperial&appid=f7881db99aec8ecaf4b4187281073fcc";
+var APIKey2 = "67400be9b4977ab51c9e6a1653d8a7a4";
 var searchCity = $("#City").val();
 var searchCountry = $("#Country").val();
 var cities = [];
+//need to push lat and long here to access for the UV API
+var latitude = [];
+var longitude = [];
     
 //click to search for city
 var userSearch = $("button").on("click", function(){
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + ($("#City").val()) + "," + ($("#Country").val()) + APIKey;
     // var UV = "https://api.openweathermap.org/data/2.5/uvi?q="+ ($("#City").val()) + "," + ($("#Country").val()) + APIKey;
-    
+
+    //main city call
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -20,8 +25,6 @@ var userSearch = $("button").on("click", function(){
         localStorage.setItem($("#City").val(), $("#City").val() + $("#Country").val());
         userSearch.attr("class", "searched");
         userSearch.attr("id", "searched");
-
-        // userSearch.attr("data-name")
         userSearch.text($("#City").val() + ", " + ($("#Country").val()).toUpperCase());
         userSearch.addClass("list-group-item");
         $("#cityList").prepend(userSearch);
@@ -37,15 +40,35 @@ var userSearch = $("button").on("click", function(){
         $("#temp").text("Temperature: " + response.main.temp);
         $("#humidity").text("Humidity: " + response.main.humidity);
         $("#wind-speed").text("Wind Speed: " + response.wind.speed);
-        // $("#UV").attr("src","https://api.openweathermap.org/data/2.5/uvi?q="+ ($("#City").val()) + "," + ($("#Country").val()) + APIKey));
+        // console.log("response.city.coord.lat");
         
         fiveday();
 
         $("#City").val("");
         $("#Country").val("");
+
+        $("#searched").on("click", function (event) {
+
+            console.log("click");
+            event.preventDefault();
+            
+        });
     });
+
 })
 
+// function callUV(){
+//     var UV = "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=" + APIKey2 + "&lat=" + latitude + "&lon=" + longitude + "&cnt={cnt}"
+
+//     //uv call
+//     $.ajax({
+//         url: UV,
+//         method: "GET"
+//     })
+//         .then(function(response){
+//             $("#UV").text("UV: " + response.value);
+//         })
+// }
 
 function fiveday(){
     var fivedayqueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + ($("#City").val()) + "," + ($("#Country").val()) + APIKey;
@@ -120,9 +143,9 @@ function fiveday(){
     }
 })};
 
-function callCity (){
-    userSearch.on("click", fiveday());
-}
+// function callCity (){
+//     userSearch.on("click", fiveday());
+// }
 
 $("#searchbox").keyup(function (event) {
     if (event.keyCode == 13) {
@@ -130,12 +153,3 @@ $("#searchbox").keyup(function (event) {
     }
 });
 
-$("#searched").on("click", function (event) {
-    event.preventDefault();
-            
-	//clearing the search bar
-    $("#search-term").val("");
-
-    fiveday();
-    
-});
