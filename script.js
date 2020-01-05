@@ -6,6 +6,7 @@ var cities = [];
 //need to push lat and long here to access for the UV API
 var latitude = [];
 var longitude = [];
+var userSearched;
     
 //click to search for city
 var userSearch = $("button").on("click", function(){
@@ -19,15 +20,6 @@ var userSearch = $("button").on("click", function(){
         method: "GET"
     })
         .then(function(response) {
-                
-        //creates and appends button to list 
-        var userSearch = $("<button>");
-        localStorage.setItem($("#City").val(), $("#City").val() + $("#Country").val());
-        userSearch.attr("class", "searched");
-        userSearch.attr("id", "searched");
-        userSearch.text($("#City").val() + ", " + ($("#Country").val()).toUpperCase());
-        userSearch.addClass("list-group-item");
-        $("#cityList").prepend(userSearch);
     
         //sets the search term to the title on the right
         $("#dailyTitle").empty();
@@ -41,21 +33,54 @@ var userSearch = $("button").on("click", function(){
         $("#humidity").text("Humidity: " + response.main.humidity);
         $("#wind-speed").text("Wind Speed: " + response.wind.speed);
         // console.log("response.city.coord.lat");
-        
         fiveday();
+        sideButtons();    
 
         $("#City").val("");
         $("#Country").val("");
 
-        $("#searched").on("click", function (event) {
+        // $("#searched").on("click", function (event) {
+        //     console.log("click");     
+        //     // var clickedButton = $(this).attr("data-city");
+        //     localStorage.getItem($("#City").val());
+        //     console.log($("#City").val());
 
-            console.log("click");
-            event.preventDefault();
-            
-        });
+        //     fiveday();   
+        // });
     });
-
 })
+
+
+function sideButtons() {
+	//appending buttons to new unordered list
+	$("#cityList").empty();
+
+    var userSearch = $("<button>");
+    localStorage.setItem($("#City").val(), $("#City").val() + $("#Country").val());
+    userSearch.attr("class", "searched");
+    userSearch.attr("data-city", cities[i]);
+    userSearch.attr("id", "searched");
+    userSearch.text($("#City").val() + ", " + ($("#Country").val()).toUpperCase());
+    userSearch.addClass("list-group-item");
+    $("#cityList").prepend(userSearch);
+
+	for (var i = 0; i < list.length; i++) {
+		$("#cityList").append($("<br>"));
+
+		userSearch = $("<button>");
+		userSearch.text(list[i]);
+		userSearch.addClass("prevSearch");
+		userSearch.attr("data-id", list[i]);
+		$("#cityList").prepend(userSearch);
+	}
+
+	$(".prevSearch").on("click", function (event) {
+		event.preventDefault();
+		var searchTerm = $(this).data("id");
+		console.log("localStorage" + searchTerm);
+		// searchRecipe(searchTerm);
+	});
+}
 
 // function callUV(){
 //     var UV = "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=" + APIKey2 + "&lat=" + latitude + "&lon=" + longitude + "&cnt={cnt}"
