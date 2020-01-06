@@ -6,10 +6,12 @@ var cities = [];
 //need to push lat and long here to access for the UV API
 var latitude = [];
 var longitude = [];
-var userSearched;
+var userSearch;
     
 //click to search for city
-var userSearch = $("button").on("click", function(){
+function singleDay(){
+    
+// $("button").on("click", function(){
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + ($("#City").val()) + "," + ($("#Country").val()) + APIKey;
     // var UV = "https://api.openweathermap.org/data/2.5/uvi?q="+ ($("#City").val()) + "," + ($("#Country").val()) + APIKey;
@@ -32,34 +34,20 @@ var userSearch = $("button").on("click", function(){
         $("#temp").text("Temperature: " + response.main.temp);
         $("#humidity").text("Humidity: " + response.main.humidity);
         $("#wind-speed").text("Wind Speed: " + response.wind.speed);
-        // console.log("response.city.coord.lat");
-        fiveday();
-        sideButtons();    
 
-        $("#City").val("");
-        $("#Country").val("");
-
-        // $("#searched").on("click", function (event) {
-        //     console.log("click");     
-        //     // var clickedButton = $(this).attr("data-city");
-        //     localStorage.getItem($("#City").val());
-        //     console.log($("#City").val());
-
-        //     fiveday();   
-        // });
+        // $("#City").val("");
+        // $("#Country").val("");
     });
-})
+// })
+};
 
-
+//appending buttons to new unordered list
 function sideButtons() {
-	//appending buttons to new unordered list
-	$("#cityList").empty();
 
     var userSearch = $("<button>");
     localStorage.setItem($("#City").val(), $("#City").val() + $("#Country").val());
     userSearch.attr("class", "searched");
     userSearch.attr("data-city", cities[i]);
-    userSearch.attr("id", "searched");
     userSearch.text($("#City").val() + ", " + ($("#Country").val()).toUpperCase());
     userSearch.addClass("list-group-item");
     $("#cityList").prepend(userSearch);
@@ -77,9 +65,17 @@ function sideButtons() {
 	$(".prevSearch").on("click", function (event) {
 		event.preventDefault();
 		var searchTerm = $(this).data("id");
-		console.log("localStorage" + searchTerm);
-		// searchRecipe(searchTerm);
-	});
+        fiveday(searchTerm)
+        singleDay(searchTerm);
+        sideButtons(searchTerm);
+    });
+    
+    // $(".searched").on("click", function (event) {
+    //     console.log("click");     
+        // var clickedButton = $(this).attr("data-city");
+        // localStorage.getItem($("#City").val());
+        // console.log($("#City").val());
+    // });
 }
 
 // function callUV(){
@@ -119,8 +115,6 @@ function fiveday(){
                 var date1 = $("<div>");
                 date1.text(moment().add(1, 'days').format('L'));
                 $("#date1").append(date1);
-                // var img1 = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.list.weather.icon + ".png");
-                // $("#date1").append(img1);
                 $("#temp1").append("Temp: " + response.list[i].main.temp);
                 $("#humidity1").append("Humidity: " + response.list[i].main.humidity + "%");
                 counter++;
@@ -168,13 +162,14 @@ function fiveday(){
     }
 })};
 
-// function callCity (){
-//     userSearch.on("click", fiveday());
-// }
+$("#submitBtn").on("click", function(){
+    fiveday()
+    singleDay();
+    sideButtons();
+})
 
 $("#searchbox").keyup(function (event) {
     if (event.keyCode == 13) {
         $("#submitBtn").click();
     }
 });
-
